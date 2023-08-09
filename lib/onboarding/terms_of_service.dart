@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:easy_rich_text/easy_rich_text.dart';
 
+import 'join.dart';
+
 class TermsOfService extends StatefulWidget {
   const TermsOfService({super.key});
 
@@ -69,8 +71,9 @@ class _TermsOfServiceState extends State<TermsOfService> {
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
-                              color: Color(0xff52C6D8)),
-                        )
+                              color: Color(0xff52C6D8)
+                          ),
+                        ),
                       ],
                     ),
                     Row(
@@ -137,26 +140,28 @@ class _TermsOfServiceState extends State<TermsOfService> {
                     ),
                   ],
                 ),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.white, boxShadow: [
+                decoration: BoxDecoration(border: Border.all(color: Color(0xffeeeeee)), borderRadius: BorderRadius.circular(12), color: Colors.white, boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.7),
-                    blurRadius: 12,
-                  )
+                      color: Color(0xffeeeeee), //.withOpacity(0.7),
+                      blurRadius: 8,
+                      offset: Offset(0, 4))
                 ]),
+              ),
+              SizedBox(
+                height: 186,
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xffbbbbbb)
+                  backgroundColor: Color(0xffbbbbbb),
+                  minimumSize: Size.fromHeight(48),
                 ),
-                  onPressed: (){
-
-                  },
-                  child: Text('다음',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700
-                    ),
-                  ),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Join()));
+                },
+                child: Text(
+                  '다음',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                ),
               ),
             ],
           ),
