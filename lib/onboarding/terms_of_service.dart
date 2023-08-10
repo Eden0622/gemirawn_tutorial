@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_rich_text/easy_rich_text.dart';
+import 'package:gemirawn_tutorial/main.dart';
 
 import 'join.dart';
 
@@ -23,6 +24,13 @@ class _TermsOfServiceState extends State<TermsOfService> {
         title: Text('재미로운 약관동의'),
         backgroundColor: Colors.white,
         elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.navigate_before),
+          color: Colors.black,
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Loading()));
+          },
+        ),
       ),
       body: Center(
         child: Padding(
