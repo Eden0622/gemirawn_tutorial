@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:gemirawn_tutorial/onboarding/terms_of_service.dart';
 import 'package:http/http.dart' as http;
+import 'package:easy_rich_text/easy_rich_text.dart';
 
 class Join extends StatefulWidget {
   const Join({super.key});
@@ -35,259 +36,151 @@ class _JoinState extends State<Join> {
           icon: Icon(Icons.navigate_before),
           color: Colors.black,
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => TermsOfService()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => TermsOfService()));
           },
         ),
         backgroundColor: Colors.white,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const Text(
-              '내 정보',
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
-            ),
-            Container(
-                padding: EdgeInsets.all(20),
+      body: SingleChildScrollView(
+        child: Center(
+            child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            children: [
+              Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: Color(0xffeeeeee)),
                   borderRadius: BorderRadius.circular(12),
-                  //color: Colors.white,
-                  /*boxShadow: [
-                      BoxShadow(
-                          color: Color(0xffeeeeee), //.withOpacity(0.7),
-                          blurRadius: 8,
-                          offset: Offset(0, 4))
-                    ]),*/
                 ),
-                child: Form(
-                  key: formKey,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text('이름',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500)),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              TextFormField(
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Form(
+                      key: formKey,
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('내 정보', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700)),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text('이름', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+                                TextFormField(
                                   decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Color(0xffeeeeee)),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(12.0))),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Color(0xffeeeeee)),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(12.0))),
-                              )),
-                            ],
+                                      hintText: '홍길동',
+                                      hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
+                                      //labelText: '이름',
+                                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                      filled: true,
+                                      fillColor: Color(0xffeeeeee)),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text('전화번호',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500)),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              TextFormField(
+                          SizedBox(height: 20),
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('전화번호', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+                                TextFormField(
                                   decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Color(0xffeeeeee)),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(12.0))),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Color(0xffeeeeee)),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(12.0))),
-                              )),
-                            ],
+                                      hintText: '000-0000-0000',
+                                      hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
+                                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                      filled: true,
+                                      fillColor: Color(0xffeeeeee)),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text('생년월일*',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500)),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              TextFormField(
-                                  decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Color(0xffeeeeee)),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(12.0))),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Color(0xffeeeeee)),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(12.0))),
-                              )),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text('성별',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500)),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text('주소*',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500)),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                      child: TextFormField(
-                                    decoration: InputDecoration(
-                                      enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Color(0xffeeeeee)),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12.0))),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Color(0xffeeeeee)),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12.0))),
+                          SizedBox(height: 20),
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      '생년월일',
+                                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
                                     ),
-                                    controller: controller,
-                                  )),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Map<String, String> params = {
-                                        'confmKey':
-                                            'devU01TX0FVVEgyMDIzMDgxMDIxNDU1NzExNDAwODE=',
-                                        'returnUrl': 'join.dart',
-                                      };
-                                      http
-                                          .post(
-                                        //주소
-                                        Uri.parse(
-                                            'https://business.juso.go.kr/addrlink/addrMobileLinkUrl.do'),
-                                        body: params,
-                                      )
-                                          .then((response) {
-                                        var json = jsonDecode(response.body);
-                                        setState(() {
-                                          list = json['results']['juso'];
-                                        });
-                                      }).catchError((onError) {});
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white,
-                                      elevation: 0,
-                                      side: BorderSide(
-                                        color: Color(0xffeeeeee)
+                                    Text('*', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.red)),
+                                  ],
+                                ),
+                                TextFormField(
+                                    decoration: InputDecoration(
+                                  hintText: '본인의 생년월일을 입력해주세요',
+                                  hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
+                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                ))
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Container(
+                            child: const Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      '성별',
+                                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                                    ),
+                                    Text('*', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.red)),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Row(
+                                  children: [
+                                    Text(
+                                      '주소',
+                                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                                    ),
+                                    Text('*', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.red)),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                        child: TextFormField(
+                                      decoration: InputDecoration(
+                                        hintText: '주소를 검색해주세요',
+                                        hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
+                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
                                       ),
-                                      padding: EdgeInsets.all(18),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12)
-                                      )
-                                    ),
-                                    child: Text(
-                                      '주소검색',
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 14),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              TextFormField(
-                                  decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Color(0xffeeeeee)),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(12.0))),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Color(0xffeeeeee)),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(12.0))),
-                              )),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text('즐겨찾는 매장',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500)),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                      child: TextFormField(
-                                    decoration: InputDecoration(
-                                      enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Color(0xffeeeeee)),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12.0))),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Color(0xffeeeeee)),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12.0))),
-                                    ),
-                                    controller: controller,
-                                  )),
-                                  ElevatedButton(
+                                      controller: controller,
+                                    )),
+                                    ElevatedButton(
                                       onPressed: () {
                                         Map<String, String> params = {
-                                          'confmKey':
-                                              'devU01TX0FVVEgyMDIzMDgxMDIxNDU1NzExNDAwODE=',
+                                          'confmKey': 'devU01TX0FVVEgyMDIzMDgxMDIxNDU1NzExNDAwODE=',
                                           'returnUrl': 'join.dart',
                                         };
                                         http
                                             .post(
                                           //주소
-                                          Uri.parse(
-                                              'https://business.juso.go.kr/addrlink/addrMobileLinkUrl.do'),
+                                          Uri.parse('https://business.juso.go.kr/addrlink/addrMobileLinkUrl.do'),
                                           body: params,
                                         )
                                             .then((response) {
@@ -300,31 +193,203 @@ class _JoinState extends State<Join> {
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.white,
                                           elevation: 0,
-                                          side: BorderSide(
-                                              color: Color(0xffeeeeee)
-                                          ),
+                                          side: BorderSide(color: Color(0xffeeeeee)),
                                           padding: EdgeInsets.all(18),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(12)
-                                          )
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                                      child: Text(
+                                        '주소검색',
+                                        style: TextStyle(color: Colors.black, fontSize: 14),
                                       ),
-                                      child: Text('매장검색',
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 14),
-                                      )
-                                  )
-                                ],
-                              ),
-                            ],
+                                    )
+                                  ],
+                                ),
+                                TextFormField(
+                                    decoration: InputDecoration(
+                                  hintText: '상세주소를 입력해주세요',
+                                  hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
+                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                )),
+                              ],
+                            ),
                           ),
+                          SizedBox(height: 20),
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text('즐겨찾는 매장', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                        child: TextFormField(
+                                      decoration: InputDecoration(
+                                        hintText: '매장을 검색해주세요',
+                                        hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
+                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                      ),
+                                      controller: controller,
+                                    )),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          Map<String, String> params = {
+                                            'confmKey': 'devU01TX0FVVEgyMDIzMDgxMDIxNDU1NzExNDAwODE=',
+                                            'returnUrl': 'join.dart',
+                                          };
+                                          http
+                                              .post(
+                                            //주소
+                                            Uri.parse('https://business.juso.go.kr/addrlink/addrMobileLinkUrl.do'),
+                                            body: params,
+                                          )
+                                              .then((response) {
+                                            var json = jsonDecode(response.body);
+                                            setState(() {
+                                              list = json['results']['juso'];
+                                            });
+                                          }).catchError((onError) {});
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.white,
+                                            elevation: 0,
+                                            side: BorderSide(color: Color(0xffeeeeee)),
+                                            padding: EdgeInsets.all(18),
+                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                                        child: Text(
+                                          '매장검색',
+                                          style: TextStyle(color: Colors.black, fontSize: 14),
+                                        ))
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xffeeeeee)),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Form(
+                      //key: formKey,
+                      child: Column(
+                    children: [
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('자녀 정보', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700)),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                )),
-            Container()
-          ],
-        ),
+                      ),
+                      SizedBox(height: 20),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('성별', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '생년월일',
+                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                            ),
+                            TextFormField(
+                                decoration: InputDecoration(
+                              hintText: '자녀의 생년월일을 입력해주세요',
+                              hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
+                              enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                              focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                            ))
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('선호 캐릭터', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(
+                                    hintText: '캐릭터를 검색해주세요',
+                                    hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
+                                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                  ),
+                                  controller: controller,
+                                )),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      Map<String, String> params = {
+                                        'confmKey': 'devU01TX0FVVEgyMDIzMDgxMDIxNDU1NzExNDAwODE=',
+                                        'returnUrl': 'join.dart',
+                                      };
+                                      http
+                                          .post(
+                                        //주소
+                                        Uri.parse('https://business.juso.go.kr/addrlink/addrMobileLinkUrl.do'),
+                                        body: params,
+                                      )
+                                          .then((response) {
+                                        var json = jsonDecode(response.body);
+                                        setState(() {
+                                          list = json['results']['juso'];
+                                        });
+                                      }).catchError((onError) {});
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white,
+                                        elevation: 0,
+                                        side: BorderSide(color: Color(0xffeeeeee)),
+                                        padding: EdgeInsets.all(18),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                                    child: Text(
+                                      '캐릭터검색',
+                                      style: TextStyle(color: Colors.black, fontSize: 14),
+                                    ))
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )),
+                ),
+              ),
+            ],
+          ),
+        )),
       ),
     );
   }
