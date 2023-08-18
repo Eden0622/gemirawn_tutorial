@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_rich_text/easy_rich_text.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gemirawn_tutorial/main.dart';
 
 import 'join.dart';
@@ -19,13 +20,12 @@ class _TermsOfServiceState extends State<TermsOfService> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('재미로운 약관동의'),
-        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.navigate_before),
+          //icon: Icon(Icons.navigate_before),
+          icon: SvgPicture.asset('assets/icon/appbar_prev_icon.svg'),
           color: Colors.black,
           onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) => Loading()));
@@ -85,6 +85,7 @@ class _TermsOfServiceState extends State<TermsOfService> {
                       ],
                     ),
                     Row(
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Checkbox(
                             value: _isChecked,
@@ -106,6 +107,10 @@ class _TermsOfServiceState extends State<TermsOfService> {
                                 )
                             )
                           ],
+                        ),
+                        IconButton(
+                          onPressed: (){},
+                          icon: SvgPicture.asset('assets/icon/terms_icon.svg'),
                         ),
                       ],
                     ),
@@ -132,6 +137,10 @@ class _TermsOfServiceState extends State<TermsOfService> {
                             )
                           ],
                         ),
+                        IconButton(
+                          onPressed: (){},
+                          icon: SvgPicture.asset('assets/icon/terms_icon.svg'),
+                        ),
                       ],
                     ),
                     Row(
@@ -143,7 +152,11 @@ class _TermsOfServiceState extends State<TermsOfService> {
                                 _isChecked = value!;
                               });
                             }),
-                        Text('이메일, SMS 마케팅 수신 동의 (선택)')
+                        Text('이메일, SMS 마케팅 수신 동의 (선택)'),
+                        IconButton(
+                          onPressed: (){},
+                          icon: SvgPicture.asset('assets/icon/terms_icon.svg'),
+                        ),
                       ],
                     ),
                   ],

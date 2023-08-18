@@ -15,10 +15,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        fontFamily: 'Pretendard',
-        primaryColor: Color(0xff52C6D8),
-        scaffoldBackgroundColor: Color(0xff52C6D8),
-      ),
+          fontFamily: 'Pretendard',
+          primaryColor: Color(0xff52C6D8),
+          //scaffoldBackgroundColor: Color(0xff52C6D8),
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.white,
+            shadowColor: Color(0xffeeeeee),
+          )),
       debugShowCheckedModeBanner: false,
       title: "재미로운",
       home: Loading(),
@@ -32,11 +36,11 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      backgroundColor: Color(0xff52C6D8),
       appBar: AppBar(
-        title: Text( '재미로운', style: TextStyle(fontSize: 0),
-        ),
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        backgroundColor: Color(0xff52C6D8),
       ),
       body: Center(
         child: Padding(
@@ -50,11 +54,7 @@ class Loading extends StatelessWidget {
               ),
               Text(
                 '재미로운 일들이\n 가득한 하루를 보내세요!',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    height: 1.50),
+                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500, height: 1.50),
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -63,12 +63,7 @@ class Loading extends StatelessWidget {
               Column(
                 children: [
                   ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: Color(0xFFFFE812),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12))
-                    ),
+                    style: ElevatedButton.styleFrom(elevation: 0, backgroundColor: Color(0xFFFFE812), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => TermsOfService()));
                     },
