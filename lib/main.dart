@@ -38,10 +38,6 @@ class Loading extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Color(0xff52C6D8),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
