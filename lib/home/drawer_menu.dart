@@ -16,7 +16,8 @@ class DrawerMenu extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [SvgPicture.asset('assets/icon/drawer_logo.svg'), IconButton(onPressed: () {}, icon: SvgPicture.asset('assets/icon/logout_icon.svg'))],
+                  children: [
+                    SvgPicture.asset('assets/icon/drawer_logo.svg'), IconButton(onPressed: () {}, icon: SvgPicture.asset('assets/icon/logout_icon.svg'))],
                 ),
                 Row(
                   children: [
@@ -26,7 +27,7 @@ class DrawerMenu extends StatelessWidget {
                 ),
                 SizedBox(height: 16),
                 Container(
-                  padding: EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 55),
+                  padding: EdgeInsets.only(top: 5, left: 15, right: 163),
                   decoration: BoxDecoration(
                       border: Border.all(color: Color(0xffeeeeee)),
                       borderRadius: BorderRadius.circular(12),
@@ -41,14 +42,15 @@ class DrawerMenu extends StatelessWidget {
                       Text(
                         '32,000 P',
                         style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700, color: Color(0xff52C6D8)),
-                      )
+                      ),
+                      SizedBox(height: 5),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 16),
+          //SizedBox(height: 16),
           ListTile(
             leading: SvgPicture.asset('assets/icon/Frame 1614.svg'),
             title: Text('내 정보 수정'),
