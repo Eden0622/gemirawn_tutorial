@@ -12,10 +12,13 @@ class UsePoint extends StatefulWidget {
 }
 
 class _UsePointState extends State<UsePoint> {
-  bool get _isAll => save && use;
-  bool all = false;
-  bool save = false;
-  bool use = false;
+  int _selectMenuIndex = 0;
+
+  void _selectMenu(int menuIndex) {
+    setState(() {
+      _selectMenuIndex = menuIndex;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,7 @@ class _UsePointState extends State<UsePoint> {
         appBar: AppBar(
           title: const Text(
             '포인트 적립/사용 내역',
-            style: TextStyle(color: blackColor),
+            style: TextStyle(color: blackColor, fontSize: 18, fontWeight: FontWeight.w700),
           ),
           centerTitle: true,
           leading: IconButton(
@@ -49,7 +52,7 @@ class _UsePointState extends State<UsePoint> {
                         color: Colors.white,
                         boxShadow: [const BoxShadow(blurRadius: 8, offset: Offset(0, 4), color: color3)]),
                     child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           '총 보유 포인트',
@@ -66,76 +69,81 @@ class _UsePointState extends State<UsePoint> {
                         Row(
                           children: [
                             GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  if (save == false && use == false) {
-                                    all = !all;
-                                    print(_isAll);
-                                  }
-                                });
-                              },
-                              child: Text(
-                                '전체',
-                                style: TextStyle(fontSize: 16, fontWeight: all ? FontWeight.w700 : FontWeight.w500, color: all ? blackColor : color1),
-                              ),
+                              onTap: () => _selectMenu(0),
+                              child: _menuStyle('전체', _selectMenuIndex == 0),
                             ),
                             const SizedBox(width: 12),
                             SvgPicture.asset('assets/icon/_.svg'),
                             const SizedBox(width: 12),
                             GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  if (all == false && use == false) {
-                                    save = !save;
-                                  }
-                                });
-                              },
-                              child: Text(
-                                '적립',
-                                style: TextStyle(fontSize: 16, fontWeight: save ? FontWeight.w700 : FontWeight.w500, color: save ? blackColor : color1),
-                              ),
+                              onTap: () => _selectMenu(1),
+                              child: _menuStyle('적립', _selectMenuIndex == 1),
                             ),
                             const SizedBox(width: 12),
                             SvgPicture.asset('assets/icon/_.svg'),
                             const SizedBox(width: 12),
                             GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  if (all == false && save == false) {
-                                    use = !use;
-                                  }
-                                });
-                              },
-                              child: Text(
-                                '사용',
-                                style: TextStyle(fontSize: 16, fontWeight: use ? FontWeight.w700 : FontWeight.w500, color: use ? blackColor : color1),
-                              ),
+                              onTap: () => _selectMenu(2),
+                              child: _menuStyle('사용', _selectMenuIndex == 2),
                             ),
                           ],
                         )
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: ListView(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      children: [
-                        PointLog(),
-                        PointLog(),
-                        PointLog(),
-                        PointLog(),
-                        PointLog(),
-                        PointLog(),
-                        PointLog(),
-                      ],
+                  if (_selectMenuIndex == 0)
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: ListView(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        children: [
+                          PointLog(),
+                          PointLog(),
+                          PointLog(),
+                        ],
+                      ),
                     ),
-                  )
+                  if (_selectMenuIndex == 1)
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: ListView(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        children: [
+                          PointLog(),
+                          PointLog(),
+                          PointLog(),
+                        ],
+                      ),
+                    ),
+                  if (_selectMenuIndex == 2)
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: ListView(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        children: [
+                          PointLog(),
+                          PointLog(),
+                          PointLog(),
+                        ],
+                      ),
+                    ),
                 ],
               ),
             )
           ],
         ));
   }
+}
+
+Widget _menuStyle(String text, bool isSelected) {
+  return Text(
+    text,
+    style: TextStyle(
+        fontSize: 16,
+        fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+        color: isSelected ? blackColor : color1),
+  );
 }
