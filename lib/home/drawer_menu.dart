@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'use_point.dart';
+import '../point/use_point.dart';
 
 class DrawerMenu extends StatelessWidget {
   const DrawerMenu({super.key});

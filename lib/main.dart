@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gemirawn_tutorial/config/constants.dart';
 import 'package:gemirawn_tutorial/home/home.dart';
 
 import 'onboarding/terms_of_service.dart';
@@ -23,7 +24,12 @@ class MyApp extends StatelessWidget {
           appBarTheme: AppBarTheme(
             backgroundColor: Colors.white,
             shadowColor: Color(0xffeeeeee),
-          )),
+          ),
+        cardTheme: CardTheme(
+          color: Colors.white,
+          
+        )
+      ),
       debugShowCheckedModeBanner: false,
       title: "재미로운",
       home: Loading(),
@@ -38,7 +44,7 @@ class Loading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Color(0xff52C6D8),
+      backgroundColor: primaryColor,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -46,7 +52,7 @@ class Loading extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset('assets/icon/logo_1.png'),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Text(
@@ -54,49 +60,28 @@ class Loading extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500, height: 1.50),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(
+              /*SizedBox(
                 height: 200,
-              ),
+              ),*/
               Column(
                 children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(elevation: 0, backgroundColor: Color(0xFFFFE812), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => TermsOfService()));
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        //icon: Image.asset('assets/icon/kakao_logo.png'),
-                        SvgPicture.asset('assets/icon/kakao_logo(1).svg'),
-                        Text(
-                          '카카오로 시작하기',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ],
+                  IconButton(
+                    style: IconButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 48, vertical: 24)
                     ),
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => TermsOfService()));
+                      },
+                      icon: SvgPicture.asset('assets/icon/kakao_login_btn.svg',
+                      width: 500,height: 100,),
                   ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        padding: EdgeInsets.all(11.5),
-                        backgroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        )),
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.apple),
-                        Text('Apple로 시작하기'),
-                      ],
-                    ),
+                  /*const SizedBox(height: 8),*/
+                  IconButton(
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+                      },
+                      icon: SvgPicture.asset('assets/icon/apple_login_btn.svg',
+                      width: 328,),
                   ),
                 ],
               ),
