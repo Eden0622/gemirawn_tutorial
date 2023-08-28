@@ -9,22 +9,29 @@ class DrawerMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.white,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SvgPicture.asset('assets/icon/drawer_logo.svg'),
-              IconButton(onPressed: () {},
-                  icon: SvgPicture.asset('assets/icon/logout_icon.svg'))
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SvgPicture.asset('assets/icon/drawer_logo.svg'),
+                IconButton(onPressed: () {},
+                    icon: SvgPicture.asset('assets/icon/logout_icon.svg'))
+              ],
+            ),
           ),
-          const Row(
-            children: [
-              Text('최승연', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),),
-              Text(' 님', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
-            ],
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                Text('최승연', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),),
+                Text(' 님', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
+              ],
+            ),
           ),
           const SizedBox(height: 16),
           Container(
@@ -36,6 +43,7 @@ class DrawerMenu extends StatelessWidget {
                 color: Colors.white,
                 boxShadow: [const BoxShadow(blurRadius: 8, offset: Offset(0, 4), color: Color(0xffeeeeee))]),
             child: const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   '최승연님의 포인트',
@@ -67,7 +75,7 @@ class DrawerMenu extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => UsePoint()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const UsePoint()));
             },
             child: Container(
               padding: const EdgeInsets.all(12),

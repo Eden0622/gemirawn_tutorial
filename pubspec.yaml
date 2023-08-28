@@ -40,6 +40,7 @@ dependencies:
   easy_rich_text: ^2.0.0
   http: ^1.1.0
   kpostal: ^0.5.1
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:

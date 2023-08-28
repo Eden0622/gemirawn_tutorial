@@ -10,14 +10,12 @@ class Point {
   final DateTime createDAT;
   final int type;
 
-//<editor-fold desc="Data Methods">
-  const Point({
+  Point({
     required this.storeName,
     required this.reason,
     required this.point,
     required this.createDAT,
-    required this.type,
-  });
+    required this.type});
 }
 
 final List<Point> dummyPointList = List.generate(

@@ -73,7 +73,7 @@ class Loading extends StatelessWidget {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => TermsOfService()));
                       },
                       icon: SvgPicture.asset('assets/icon/kakao_login_btn.svg',
-                      width: 500,height: 100,),
+                      width: 500, height: 100,),
                   ),
                   /*const SizedBox(height: 8),*/
                   IconButton(
