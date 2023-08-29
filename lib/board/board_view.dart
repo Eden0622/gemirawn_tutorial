@@ -9,9 +9,10 @@ import '../config/constants.dart';
 import 'board_list.dart';
 
 class BoardView extends StatefulWidget {
-  const BoardView({super.key});
+  const BoardView({super.key, required this.notice});
 
  //final BoardList boardList;
+  final Notice notice;
 
   @override
   State<BoardView> createState() => _BoardViewState();

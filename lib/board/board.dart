@@ -6,29 +6,10 @@ import 'package:gemirawn_tutorial/data/models/notice.dart';
 import '../config/constants.dart';
 import '../home/home.dart';
 
-class Board extends StatefulWidget {
+class Board extends StatelessWidget {
   const Board({super.key});
 
   List<Notice> get boardList => noticeList;
-
-  @override
-  State<Board> createState() => _BoardState();
-}
-
-class _BoardState extends State<Board> {
-  @override
-  void initState() {
-    super.initState();
-    for (int i = 0; i < noticeList.length; i++) {
-      final Notice notice = noticeList[i];
-      const SizedBox(height: 16);
-      /*if(i % 2 == 0) {
-
-      } else if(i % 2 == 1) {
-
-      }*/
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,18 +25,12 @@ class _BoardState extends State<Board> {
             },
           ),
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                  itemCount: noticeList.length,
-                  itemBuilder: (context, index) {
-                    return BoardList(
-                      notice: noticeList[index],
-                    );
-                  }),
-            ),
-          ],
-        ));
+        body: ListView.builder(
+            itemCount: noticeList.length,
+            itemBuilder: (context, index) {
+              return BoardList(
+                notice: noticeList[index],
+              );
+            }));
   }
 }
