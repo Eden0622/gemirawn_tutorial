@@ -69,7 +69,7 @@ class _UsePointState extends State<UsePoint> {
           Container(
             padding: const EdgeInsets.all(12),
             margin: const EdgeInsets.all(16),
-            decoration: MyBoxDecoration.myBoxDecoration(color: Colors.white, borderColor: color3),
+            decoration: MyBoxDecoration.myBoxDecoration(),
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

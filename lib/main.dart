@@ -45,47 +45,55 @@ class Loading extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: primaryColor,
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset('assets/icon/logo_1.png'),
-              const SizedBox(
-                height: 24,
-              ),
-              Text(
-                '재미로운 일들이\n 가득한 하루를 보내세요!',
-                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500, height: 1.50),
-                textAlign: TextAlign.center,
-              ),
-              /*SizedBox(
-                height: 200,
-              ),*/
-              Column(
+      body: Container(
+        child: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                    style: IconButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 48, vertical: 24)
-                    ),
-                      onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => TermsOfService()));
-                      },
-                      icon: SvgPicture.asset('assets/icon/kakao_login_btn.svg',
-                      width: 500, height: 100,),
+                  Image.asset('assets/icon/logo_1.png'),
+                  const SizedBox(
+                    height: 24,
                   ),
-                  /*const SizedBox(height: 8),*/
-                  IconButton(
-                      onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
-                      },
-                      icon: SvgPicture.asset('assets/icon/apple_login_btn.svg',
-                      width: 328,),
+                  Text(
+                    '재미로운 일들이\n 가득한 하루를 보내세요!',
+                    style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500, height: 1.50),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 132,
+                  ),
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        child: IconButton(
+                            onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => TermsOfService()));
+                            },
+                            icon: SvgPicture.asset('assets/icon/kakao_login_btn.svg'),
+                        ),
+                      ),
+                      /*const SizedBox(height: 8),*/ 
+                      Container(
+                        //color: Colors.red,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        child: IconButton(
+                            onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+                            },
+                            icon: SvgPicture.asset('assets/icon/apple_login_btn.svg'),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
         ),
       ),

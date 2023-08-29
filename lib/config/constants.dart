@@ -11,7 +11,7 @@ const Color color5 = Color(0xFF6B6B6B);
 
 // 박스 데코레이션 클래스
 class MyBoxDecoration {
-  static BoxDecoration myBoxDecoration({Color? color, Color? borderColor}) {
+  static BoxDecoration myBoxDecoration() {
     return BoxDecoration(
           border: Border.all(color: color3),
           borderRadius: BorderRadius.circular(12),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../board/board.dart';
 import '../point/use_point.dart';
 
 class DrawerMenu extends StatelessWidget {
@@ -90,7 +91,9 @@ class DrawerMenu extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const Board()));
+            },
             child: Container(
               padding: const EdgeInsets.all(12),
               child: Row(
