@@ -71,12 +71,14 @@ class BoardView extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)
                               ),
-                              minimumSize: const Size(double.infinity, 48)
+                              minimumSize: const Size(double.infinity, 48),
+                              alignment: Alignment.centerLeft
                             ),
                             child: const Text(
                               '공지사항 관련 자료.JPG',
                               style: TextStyle(color: primaryColor, fontSize: 14, fontWeight: FontWeight.w500),
                             ),
+
                           )
                         ],
                       ))
