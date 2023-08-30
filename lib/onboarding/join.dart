@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gemirawn_tutorial/config/constants.dart';
 import 'package:gemirawn_tutorial/onboarding/character_search.dart';
 
 //import 'package:gemirawn_tutorial/onboarding/children_info.dart';
@@ -21,22 +22,10 @@ class Join extends StatefulWidget {
   State<Join> createState() => _JoinState();
 }
 
-enum Gender { man, women }
-
 class _JoinState extends State<Join> {
-  List<String> selectedCategory = [];
-  String a = 'category1';
-  String b = 'category2';
 
-  int _counter = 0;
-  var _isChecked = false;
-  Gender _gender = Gender.man;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  bool isGender = true;
+  bool isKidGender = true;
 
   final formKey = GlobalKey<FormState>();
   TextEditingController controller = TextEditingController();
@@ -52,14 +41,14 @@ class _JoinState extends State<Join> {
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
-            color: Colors.black,
+            color: blackColor,
           ),
         ),
         centerTitle: true,
         leading: IconButton(
           //icon: Icon(Icons.navigate_before),
           icon: SvgPicture.asset('assets/icon/appbar_prev_icon.svg'),
-          color: Colors.black,
+          color: blackColor,
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => TermsOfService()));
           },
@@ -73,10 +62,10 @@ class _JoinState extends State<Join> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xffeeeeee)),
+                      border: Border.all(color: color3),
                       borderRadius: BorderRadius.circular(12),
                       color: Colors.white,
-                      boxShadow: [BoxShadow(blurRadius: 8, offset: Offset(0, 4), color: Color(0xffeeeeee))]),
+                      boxShadow: [BoxShadow(blurRadius: 8, offset: Offset(0, 4), color: color3)]),
                   //width: ,
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -98,11 +87,11 @@ class _JoinState extends State<Join> {
                                   TextFormField(
                                     decoration: const InputDecoration(
                                         hintText: '홍길동',
-                                        hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
-                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
-                                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                        hintStyle: TextStyle(color: color1, fontSize: 14, fontWeight: FontWeight.w400),
+                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
                                         filled: true,
-                                        fillColor: Color(0xffeeeeee)),
+                                        fillColor: color3),
                                   )
                                 ],
                               ),
@@ -118,11 +107,11 @@ class _JoinState extends State<Join> {
                                   TextFormField(
                                     decoration: InputDecoration(
                                         hintText: '000-0000-0000',
-                                        hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
-                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
-                                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                        hintStyle: TextStyle(color: color1, fontSize: 14, fontWeight: FontWeight.w400),
+                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
                                         filled: true,
-                                        fillColor: Color(0xffeeeeee)),
+                                        fillColor: color3),
                                   )
                                 ],
                               ),
@@ -146,9 +135,9 @@ class _JoinState extends State<Join> {
                                   TextFormField(
                                       decoration: InputDecoration(
                                     hintText: '본인의 생년월일을 입력해주세요',
-                                    hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
-                                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
-                                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                    hintStyle: TextStyle(color: color1, fontSize: 14, fontWeight: FontWeight.w400),
+                                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
                                   ))
                                 ],
                               ),
@@ -175,28 +164,40 @@ class _JoinState extends State<Join> {
                                       ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                               padding: EdgeInsets.only(left: 78, right: 78, top: 15, bottom: 15),
-                                              backgroundColor: Color(0xff52C6D8),
+                                              backgroundColor: isGender ? primaryColor : Colors.white,
                                               elevation: 0,
                                               shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(12),
+                                                borderRadius: BorderRadius.circular(12), side: isGender ? BorderSide.none : BorderSide(color: color2)
                                               )),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            setState(() {
+                                              isGender = true;
+                                            });
+                                          },
                                           child: Text(
                                             '남',
-                                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+                                            style: TextStyle(
+                                                color: isGender ? Colors.white : color1,
+                                                fontWeight: FontWeight.w700),
                                           )),
                                       //const SizedBox(width: 8),
                                       ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                             padding: EdgeInsets.only(left: 78, right: 78, top: 15, bottom: 15),
-                                            backgroundColor: Colors.white,
+                                            backgroundColor: isGender ? Colors.white : primaryColor,
                                             elevation: 0,
-                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12), side: BorderSide(color: Color(0xffe1e1e1))),
+                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12), side: isGender ? BorderSide(color: color2) : BorderSide.none),
                                           ),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            setState(() {
+                                              isGender = false;
+                                            });
+                                          },
                                           child: Text(
                                             '여',
-                                            style: TextStyle(color: Color(0xffbbbbbb), fontWeight: FontWeight.w700),
+                                            style: TextStyle(
+                                                color: isGender ? color1 : Colors.white,
+                                                fontWeight: FontWeight.w700),
                                           )),
                                     ],
                                   ),
@@ -214,7 +215,7 @@ class _JoinState extends State<Join> {
                                         '주소',
                                         style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
                                       ),
-                                      Text('*', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.red)),
+                                      Text('*', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: errorColor)),
                                     ],
                                   ),
                                   const SizedBox(
@@ -226,9 +227,9 @@ class _JoinState extends State<Join> {
                                           child: TextFormField(
                                         decoration: InputDecoration(
                                           hintText: '주소를 검색해주세요',
-                                          hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
-                                          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
-                                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                          hintStyle: TextStyle(color: color1, fontSize: 14, fontWeight: FontWeight.w400),
+                                          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
                                         ),
                                         controller: controller,
                                       )),
@@ -248,12 +249,12 @@ class _JoinState extends State<Join> {
                                         style: ElevatedButton.styleFrom(
                                             backgroundColor: Colors.white,
                                             elevation: 0,
-                                            side: const BorderSide(color: Color(0xffeeeeee)),
+                                            side: const BorderSide(color: color3),
                                             padding: EdgeInsets.all(18),
                                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                                         child: Text(
                                           '주소검색',
-                                          style: TextStyle(color: Colors.black, fontSize: 14),
+                                          style: TextStyle(color: blackColor, fontSize: 14),
                                         ),
                                       )
                                     ],
@@ -262,9 +263,9 @@ class _JoinState extends State<Join> {
                                   TextFormField(
                                       decoration: InputDecoration(
                                     hintText: '상세주소를 입력해주세요',
-                                    hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
-                                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
-                                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                    hintStyle: TextStyle(color: color1, fontSize: 14, fontWeight: FontWeight.w400),
+                                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
                                   )),
                                 ],
                               ),
@@ -284,9 +285,9 @@ class _JoinState extends State<Join> {
                                           child: TextFormField(
                                         decoration: InputDecoration(
                                           hintText: '매장을 검색해주세요',
-                                          hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
-                                          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
-                                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                          hintStyle: TextStyle(color: color1, fontSize: 14, fontWeight: FontWeight.w400),
+                                          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
                                         ),
                                         controller: controller,
                                       )),
@@ -298,12 +299,12 @@ class _JoinState extends State<Join> {
                                           style: ElevatedButton.styleFrom(
                                               backgroundColor: Colors.white,
                                               elevation: 0,
-                                              side: BorderSide(color: Color(0xffeeeeee)),
+                                              side: BorderSide(color: color3),
                                               padding: EdgeInsets.all(18),
                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                                           child: Text(
                                             '매장검색',
-                                            style: TextStyle(color: Colors.black, fontSize: 14),
+                                            style: TextStyle(color: blackColor, fontSize: 14),
                                           ))
                                     ],
                                   ),
@@ -318,9 +319,9 @@ class _JoinState extends State<Join> {
                 Container(
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      border: Border.all(color: Color(0xffeeeeee)),
+                      border: Border.all(color: color3),
                       borderRadius: BorderRadius.circular(12),
-                      boxShadow: [BoxShadow(blurRadius: 8, offset: Offset(0, 4), color: Color(0xffeeeeee))]),
+                      boxShadow: [BoxShadow(blurRadius: 8, offset: Offset(0, 4), color: color3)]),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Form(
@@ -361,27 +362,36 @@ class _JoinState extends State<Join> {
                                     ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             padding: EdgeInsets.only(left: 78, right: 78, top: 15, bottom: 15),
-                                            backgroundColor: Color(0xff52C6D8),
+                                            backgroundColor: isKidGender ? primaryColor : Colors.white,
                                             elevation: 0,
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(12),
+                                                side: isKidGender ? BorderSide.none : BorderSide(color: color2)
                                             )),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          setState(() {
+                                            isKidGender = true;
+                                          });
+                                        },
                                         child: Text(
                                           '남',
-                                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+                                          style: TextStyle(color: isKidGender ? Colors.white : color1, fontWeight: FontWeight.w700),
                                         )),
                                     ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           padding: EdgeInsets.only(left: 78, right: 78, top: 15, bottom: 15),
-                                          backgroundColor: Colors.white,
+                                          backgroundColor: isKidGender ? Colors.white : primaryColor,
                                           elevation: 0,
-                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12), side: BorderSide(color: Color(0xffe1e1e1))),
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12), side: isKidGender ? BorderSide(color: color2) : BorderSide.none),
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          setState(() {
+                                            isKidGender = false;
+                                          });
+                                        },
                                         child: Text(
                                           '여',
-                                          style: TextStyle(color: Color(0xffbbbbbb), fontWeight: FontWeight.w700),
+                                          style: TextStyle(color: isKidGender ? color1 : Colors.white, fontWeight: FontWeight.w700),
                                         )),
                                   ],
                                 ),
@@ -402,9 +412,9 @@ class _JoinState extends State<Join> {
                                 TextFormField(
                                     decoration: InputDecoration(
                                   hintText: '자녀의 생년월일을 입력해주세요',
-                                  hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
-                                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                  hintStyle: TextStyle(color: color1, fontSize: 14, fontWeight: FontWeight.w400),
+                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
                                 ))
                               ],
                             ),
@@ -424,9 +434,9 @@ class _JoinState extends State<Join> {
                                         child: TextFormField(
                                       decoration: InputDecoration(
                                         hintText: '캐릭터를 검색해주세요',
-                                        hintStyle: TextStyle(color: Color(0xffbbbbbb), fontSize: 14, fontWeight: FontWeight.w400),
-                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
-                                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xffeeeeee)), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                        hintStyle: TextStyle(color: color1, fontSize: 14, fontWeight: FontWeight.w400),
+                                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: color3), borderRadius: BorderRadius.all(Radius.circular(12.0))),
                                       ),
                                       controller: controller,
                                     )),
@@ -438,12 +448,12 @@ class _JoinState extends State<Join> {
                                         style: ElevatedButton.styleFrom(
                                             backgroundColor: Colors.white,
                                             elevation: 0,
-                                            side: BorderSide(color: Color(0xffeeeeee)),
+                                            side: BorderSide(color: color3),
                                             padding: EdgeInsets.all(18),
                                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                                         child: Text(
                                           '캐릭터검색',
-                                          style: TextStyle(color: Colors.black, fontSize: 14),
+                                          style: TextStyle(color: blackColor, fontSize: 14),
                                         ))
                                   ],
                                 ),
@@ -470,14 +480,14 @@ class _JoinState extends State<Join> {
                         SvgPicture.asset('assets/icon/add_icon.svg'),
                         Text(
                           '자녀 정보 추가',
-                          style: TextStyle(color: Color(0xff52C6D8), fontSize: 12),
+                          style: TextStyle(color: primaryColor, fontSize: 12),
                         ),
                       ],
                     )),
                 const SizedBox(height: 8),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff52C6D8),
+                      backgroundColor: primaryColor,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),

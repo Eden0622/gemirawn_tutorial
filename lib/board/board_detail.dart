@@ -7,8 +7,8 @@ import 'package:intl/intl.dart';
 import '../config/constants.dart';
 import '../data/models/notice.dart';
 
-class BoardView extends StatelessWidget {
-  const BoardView({super.key, required this.notice});
+class BoardDetail extends StatelessWidget {
+  const BoardDetail({super.key, required this.notice});
 
   final Notice notice;
 
@@ -81,7 +81,8 @@ class BoardView extends StatelessWidget {
 
                           )
                         ],
-                      ))
+                      )
+                  )
               ],
             ),
           ),
